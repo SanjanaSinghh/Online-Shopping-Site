@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head><style>
+    body{
+        background-image: url("https://store-cdn.arduino.cc/uni/wysiwyg/Payment_Options.jpg");
+    }
+    #lo{
+        text-align: center;
+        text-decoration: underline;
+        font-size: 50px;
+    }
+    #card{
+        /* display: grid;
+        grid-template-columns: 1fr; */
+      
+        width: 40%;
+        margin-left: 30%;
+        height: 500px;
+        border: black 2px solid;
+        background-color: rgb(144, 216, 168);
+    }
+    #card>input{
+        margin-left: 20%;
+        width: 60%;
+        height: 35px;
+    }
+    #card>label{
+        font-weight: 700;
+        margin-left: 20%;
+        width: 60%;
+        height: 35px;
+        font-size: 40px;
+    }
+    #card>button{
+        font-weight: 700;
+        margin-left: 20%;
+        width: 60%;
+        height: 35px;
+        font-size: 20px;
+    }
+
+
+
+</style>
+<body>
+    <div>
+        <h1 id="lo"></h1>
+    </div>
+    <div id="card">
+<label for="">Card Number</label>
+<br>
+<input type="number" id="number">
+<br><br>
+<label for="">Valid date</label>
+<br>
+<input type="month" id="date">
+<br><br>
+<label for="">Cvv</label>
+<br>
+<input type="number" id="cvv">
+<br><br>
+<label for=""> Card Holder Name</label>
+<input type="text" id="name">
+<br>
+<br>
+<button  onclick="pay()">Pay</button>
+
+
+    </div>
+</body>
+<script>
+   var s= localStorage.getItem("payble")
+   var sanju=document.createElement('h3')
+   sanju.innerText="Total Amount "+s
+   document.getElementById('lo').append(sanju)
+
+   
+
+    function pay(){
+        num=document.getElementById('number').value
+        date=document.getElementById('date').value
+        cvv=document.getElementById('cvv').value
+        name=document.getElementById('name').value
+        if(name==''||date==''||num.length!==16||cvv.length!==3){
+            alert( "Fill all required field")
+            return
+        }
+        
+
+        alert( "Payment successful!")
+
+        window.location.href='./succesful.html'
+       
+
+      
+        
+    }
+</script>
+</script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ .sanj{
+    height: 500px;
+    width: 25%;
+    margin-left: 35%;
+    margin-top: 5%;
+    padding-left: 3%;
+    padding-top: 1%;
+    background-color: rgb(226, 115, 75);
+    border-color: rgb(92, 142, 142) 10px solid;
+    border-radius: 10%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+h1{
+    font-weight: 500;
+    font-size: 65px;
+    text-decoration: underline;
+}
+body{
+    background-color: rgb(238, 171, 147);
+}
+input{
+    height: 40px;
+    width: 70%;
+    
+}
+#submit{
+    margin: 10px;
+    font-weight: 600;
+    height: 30px;
+    width: 70%;
+    background-color: rgb(238, 171, 147); 
+}
+p{
+    font-size: 28px;
+
+}
+p > a{
+ text-decoration: none;
+ font-size: 35px;
+}
+p>a:hover{
+    color: rgb(58, 3, 58);
+}
+    </style>
+</head>
+<body>
+    <div class="sanj">
+    <h1>Login</h1>
+    <form>
+        <input type="email" id="email" placeholder="Enter email">
+        <input type="password" id="password" placeholder="Enter password">
+        <input type="submit" id="submit" value="Login">
+    </form>
+    <p>New user?<a href="signin.html">Register</a> </p>
+</div>
+</body>
+<script>
+    var sanjana=false
+
+    document.querySelector('form').addEventListener('submit',logfn);
+    function logfn(){
+    var regisUs = JSON.parse(localStorage.getItem('usdata'));
+    if(regisUs==null){
+        alert('not found')
+        window.location.reload()
+        return
+    }
+    event.preventDefault();
+    var givemail = document.querySelector('#email').value;
+    var givpass = document.querySelector('#password').value;
+
+   regisUs.forEach(usdata => {
+       if(usdata.email===givemail && usdata.password===givpass){
+           alert('Login Successful');
+           localStorage.setItem('curser',name)
+           sanjana=true
+           window.location.href = 'index.html';
+       }
+      
+   });
+   if(sanjana==false){
+       alert("invalid credentials")
+   }
+
+    }
+</script>
+</html>
+<!-- localStorage.setItem('curser',name) -->
+<!--  document.querySelector('form').addEventListener('submit',logfn);
+
+    var regisUs = JSON.parse(localStorage.getItem('usdata'));
+    function logfn(){
+    event.preventDefault();
+    var givemail = document.querySelector('#email').value;
+    var givpass = document.querySelector('#password').value;
+
+   regisUs.forEach(usdata => {
+       if(usdata.email===givemail && usdata.password===givpass){
+           alert('Login Successful');
+           window.location.href = 'index.html';
+       } else{
+           alert('Incorrect details');
+       }
+   });
+
+    } -->

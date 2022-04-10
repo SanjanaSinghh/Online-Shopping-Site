@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #checkout {
+            display: grid;
+            grid-template-columns: repeat(4, [col-start] 1fr [col-end]);
+            gap: 20px;
+        }
+        .box {
+            -moz-box-shadow: 0 0 5px 5px #888;
+         -webkit-box-shadow: 0 0 5px 5px #888;
+          box-shadow: 0 0 5px 5px #888;
+          /* background-color: rgb(237, 240, 245); */
+        }
+        .box:hover{
+        background-color: white;
+        transform: scale(1.05);
+        cursor: pointer;
+        transition: all 200ms;
+        background-color: #e7f0ea;
+    }
+    #code > input {
+        height: 35px;
+        font-size: 30px;
+        
+    }
+    #code > button {
+        height: 35px;
+        background-color: black;
+        color: white;
+        font-weight: 600;
+        
+    }
+    #code > label {
+        height: 35px;
+      
+     
+        font-weight: 600;
+        
+    }
+    @media all and (min-width: 80px) and (max-width: 400px) {
+            #container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+  p{
+      font-size: 40px;
+      color: #888;
+  }
+  a{
+      font-weight: 400px;
+      font-size: 50px;
+
+  }
+  label{
+      font-size: 45px;
+  }
+  button{
+      font-size: 30px;
+  }
+    </style>
+</head>
+<body>
+   <div id="code">
+    <label for="">Apply Promo Code</label>
+    <input type="text" id="lo">
+    <button onclick="x()">Apply code</button>
+   </div>
+    <p></p>
+    <p id="sanju"></p>
+    
+    <div id="checkout"></div>
+    <a href="./payment.html"> Continue to payment</a>
+</body>
+<script>
+    var cartData = JSON.parse(localStorage.getItem('cartData'));
+
+    var totalSum = cartData.reduce(function(sum, ele, index, arr) {
+        return sum + Number(ele.price);
+    }, 0);
+   
+    console.log(totalSum)
+    var totalItems = cartData.length;
+    document.querySelector('p').innerText = 'You have ' + " " + totalItems + " " + "items" + " "+ "in your cart and total is" + totalSum; 
+   
+    localStorage.setItem('payble',totalSum)
+    cartData.forEach((cartItem, cartIndex) => {
+        var box = document.createElement('div');
+        box.setAttribute('class', 'box')
+
+        var img = document.createElement('img');
+        img.src = cartItem.image_url;
+
+
+        var name = document.createElement('p');
+        name.textContent = cartItem.name;
+
+        var price = document.createElement('p');
+        price.innerText = cartItem.price;
+
+        var cartButton = document.createElement('button');
+        cartButton.innerText = 'Remove from cart';
+
+        cartButton.addEventListener('click', function() {
+           cartData.splice(cartIndex, 1)
+           localStorage.setItem('cartData', JSON.stringify(cartData));
+           window.location.reload();
+        });
+
+        box.append(img, name, price, cartButton);
+        document.querySelector('#checkout').append(box)
+    });
+var san=true
+    function x(){
+        code = document.getElementById('lo').value 
+        if(san==false){
+            return
+        }
+        if(code=='masai30'&&san==true){
+            totalSum=totalSum/100
+            totalSum=totalSum*70
+            san=false
+        }
+      
+        totalSum=totalSum.toFixed(2)
+        document.querySelector('#sanju').innerText =  "After apply promo code payble Amount is   " + totalSum; 
+        localStorage.setItem('payble',totalSum)
+    }
+   
+</script>
+</html>
